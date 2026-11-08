@@ -1,0 +1,18 @@
+services:
+  bananos-manager:
+    build: .
+    container_name: bananos-manager
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      DATABASE_URL: sqlite:////app/database/bananos_pos.db
+    volumes:
+      - bananos_manager_db:/app/database
+      - bananos_manager_uploads:/app/uploads
+
+volumes:
+  bananos_manager_db:
+    name: bananos_manager_db
+  bananos_manager_uploads:
+    name: bananos_manager_uploads
